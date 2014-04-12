@@ -62,6 +62,7 @@ public class Sayhi extends HttpServlet {
 		out.println("<br>c:/apache-tomcat-7.0.52/lib/<br>,");
 		out.println("或c:/apache-tomcat-7.0.52/webapps/jspweb/WEB-INF/lib/目录下(会被自动删除)<br>");
 		out.println("<br>否则就是java.lang.ClassNotFoundException: com.mysql.jdbc.Driver<br>");
+		out.println("<br>但用Maven Project就不需要按以上方法做<br>");
 		out.println("<br><br><br><a href='/testMavenWeb/html/MyFormPage.html'>返回</a>");
 		out.println("</body>");
 		out.println("</html>");
