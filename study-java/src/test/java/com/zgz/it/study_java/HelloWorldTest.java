@@ -23,4 +23,10 @@ public class HelloWorldTest {
 		assertEquals("你好，世界！（UTF-8)", helloWorld.sayHello());
 	}
 
+	@Test
+	public void testHelloWorld() {
+		HelloWorld helloWorld = new HelloWorld("测试！（UTF-8)");
+		
+		assertEquals("测试！（UTF-8)", helloWorld.sayHello());
+	}
 }
