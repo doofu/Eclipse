@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Sayhi
+ * Servlet implementation class SayhiForAjax
  */
-@WebServlet("/Sayhi")
-public class Sayhi extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/SayhiForAjax")
+public class SayhiForAjax extends HttpServlet {
+	private static final long serialVersionUID = 2L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Sayhi() {
+    public SayhiForAjax() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,12 +34,6 @@ public class Sayhi extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
@@ -53,19 +47,16 @@ public class Sayhi extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		out.println("<html>");
-		out.println("<head><title>Sayhi</title></head>");
-		out.println("<body>");
-		out.println(username + "的电话号码是" + phoneNumber + "，这是从数据库中查询到的  Maven");
-		out.println("<br><br><br>为何要将c:/Program Files/MySQL/Connector J 5.1.28/mysql-connector-java-5.1.28-bin.jar拷贝到<br><br><br>");
-		out.println("<br>c:/apache-tomcat-7.0.52/lib/<br>,");
-		out.println("或c:/apache-tomcat-7.0.52/webapps/jspweb/WEB-INF/lib/目录下(会被自动删除)<br>");
-		out.println("<br>否则就是java.lang.ClassNotFoundException: com.mysql.jdbc.Driver<br>");
-		out.println("<br>但用Maven Project就不需要按以上方法做<br>");
-		out.println("<br><br><br><a href='/maven-webapp/html/MyFormPage.html'>返回</a>");
-		out.println("</body>");
-		out.println("</html>");
+		
+		out.println(username + "的电话号码："+ phoneNumber);
 		out.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 	private String getPhoneNumber(String name) throws SQLException
