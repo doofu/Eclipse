@@ -7,34 +7,40 @@
 <meta HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT" -->
 <title>Insert title here</title>
 
-<script type="text/javascript" src="/maven-webapp/javascript/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../javascript/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-	function ve() {
-		window.alert("fasjfsad");
+	function checkNameByGet(){
+    	//解决中文乱码问题的方法1,页面端发出的数据作一次encodeURI，服务端使用new String(old.getBytes("iso8859-1"),"UTF-8");  
+    	//解决中文乱码问题的方法2,页面端发出的数据作两次encodeURI,服务端使用String name = URLDecoder.decode(old,"UTF-8");  
+//    	var url = "/maven-webapp/SayhiForAjax?name="+encodeURI(encodeURI($("#username").val()));  
+		var url = "/maven-webapp/SayhiForAjax?username=" + $("#username").val(); 
+
+    	url = convertURL(url); 
+
+    	$.ajax({
+    		type:"get",		//请求方式
+    		url:url,		//发送请求地址
+			data:{			//发送给数据库的数据
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus){
+				$("#myres").html(data);
+			}
+		});
 	}
-	function verify(){
-	    //解决中文乱码问题的方法1,页面端发出的数据作一次encodeURI，服务端使用new String(old.getBytes("iso8859-1"),"UTF-8");  
-	    //解决中文乱码问题的方法2,页面端发出的数据作两次encodeURI,服务端使用String name = URLDecoder.decode(old,"UTF-8");  
-	//    var url = "/maven-webapp/SayhiForAjax?name="+encodeURI(encodeURI($("#username").val()));  
-	    var url = "/maven-webapp/SayhiForAjax?username=" + $("#username").val(); 
 
-	    url = convertURL(url); 
-
-// 	    $.get(url, null, function(data) {  
-// 	        $("#myres").html(data);  
-// 	    });  
-
-	    $.ajax({
-	    	  type:"post",//请求方式
-	    	  url:"/maven-webapp/SayhiForAjax",		//发送请求地址
-	    	   data:{//发送给数据库的数据
-	    	   username:$("#username").val()
-	    	   },
-	    	   //请求成功后的回调函数有两个参数
-	    	   success:function(data,textStatus){
-	    	    $("#myres").html(data);
-	    	   }
-	    	   });
+	function checkNameByPost(){
+		$.ajax({
+			type:"post",							//请求方式
+			url:"/maven-webapp/SayhiForAjax",		//发送请求地址
+			data:{									//发送给数据库的数据
+				username:$("#username2").val()
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus){
+				$("#myres2").html(data);
+			}
+		});
 	}  
 	
 	//给url地址增加时间蒫，难过浏览器，不读取缓存  
@@ -56,8 +62,8 @@
 
 	<form name="Sayhi" Method="Post" action="/maven-webapp/Sayhi">
 		<H2>JQuery范例程序</H2><br> <br> 
-		用户姓名：<input type='text' onkeyup="verify();" name='username' id="username" size="30"> 
-		<input type="button" onclick="verify();" value="Get访问方式"> 
+		用户姓名：<input type='text' onkeyup="checkNameByGet();" name='username' id="username" size="30"> 
+		<input type="button" onclick="checkNameByGet();" value="Get访问方式"> 
 		<font color="red" size="2"><span id="myres" ></span></font><br>
 		<!-- div style="border-width: 0; color: red" type="text" id="myres"></div><br -->
 		<!-- input style="border-width: 0; color: red" type="text" id="myres" size=50><br -->
@@ -70,7 +76,7 @@
 	<form name="Sayhi" Method="Post" action="/maven-webapp/Sayhi">
 		用户姓名：<input type='text' name='username' id="username2" size="30"> 
 		<input type="button" onclick="checkNameByPost();" value="Post访问方式"> 
-		<input style="border-width: 0; color: red" type="text" id="myres2" size=50><br>
+		<font color="red" size="2"><span id="myres2" ></span></font><br>
 		用户密码：<input	type="password" name="password"><br> 
 		电子邮件：<input	type="text" name="email"><br><br> 
 		<input type="submit" value="提交"> 
