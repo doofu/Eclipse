@@ -9,48 +9,48 @@
 
 <script type="text/javascript" src="../javascript/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-	function checkNameByGet(){
+	function checkNameByGet() {
+		//Get方式下，中文会产生乱码
     	//解决中文乱码问题的方法1,页面端发出的数据作一次encodeURI，服务端使用new String(old.getBytes("iso8859-1"),"UTF-8");  
     	//解决中文乱码问题的方法2,页面端发出的数据作两次encodeURI,服务端使用String name = URLDecoder.decode(old,"UTF-8");  
-//    	var url = "/maven-webapp/SayhiForAjax?name="+encodeURI(encodeURI($("#username").val()));  
-		var url = "/maven-webapp/SayhiForAjax?username=" + $("#username").val(); 
-
+    	var url = "/maven-webapp/SayhiForAjax?username=" + encodeURI(encodeURI($("#username").val()));  
+//		var url = "/maven-webapp/SayhiForAjax?username=" + $("#username").val(); 
     	url = convertURL(url); 
 
     	$.ajax({
     		type:"get",		//请求方式
     		url:url,		//发送请求地址
-			data:{			//发送给数据库的数据
+			data: {			//发送给数据库的数据
 			},
 			//请求成功后的回调函数有两个参数
-			success:function(data,textStatus){
+			success:function(data,textStatus) {
 				$("#myres").html(data);
 			}
 		});
 	}
 
-	function checkNameByPost(){
+	function checkNameByPost() {
 		$.ajax({
 			type:"post",							//请求方式
 			url:"/maven-webapp/SayhiForAjax",		//发送请求地址
-			data:{									//发送给数据库的数据
+			data: {									//发送给数据库的数据
 				username:$("#username2").val()
 			},
 			//请求成功后的回调函数有两个参数
-			success:function(data,textStatus){
+			success:function(data,textStatus) {
 				$("#myres2").html(data);
 			}
 		});
 	}  
 	
 	//给url地址增加时间蒫，难过浏览器，不读取缓存  
-	function convertURL(url){  
+	function convertURL(url) {  
 	    //获取时间戳  
 	    var timstamp = (new Date()).valueOf();  
 	    //将时间戳信息拼接到url上  
-	    if(url.indexOf("?") >=0){  
+	    if(url.indexOf("?") >=0) {  
 	        url = url + "&t=" + timstamp;  
-	    }else{  
+	    }else {  
 	        url = url + "?t=" + timstamp;  
 	    }  
 	    return url;  

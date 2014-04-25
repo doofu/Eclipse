@@ -2,6 +2,7 @@ package com.zgz.it.maven_webapp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -34,21 +35,31 @@ public class SayhiForAjax extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		request.setCharacterEncoding("UTF-8");
+		
 		String username = request.getParameter("username");
-		String phoneNumber;
-		phoneNumber="";
+
+		// 解决Get方式下中文乱码问题
+		if (request.getMethod().equals("GET"))
+			username = URLDecoder.decode(username,"UTF-8");
+
+		String phoneNumber = "";
+		
+		// 访问数据库，查找电话号码
 		try {
-			phoneNumber = getPhoneNumber(username);
+			phoneNumber = phoneNumber + getPhoneNumber(username);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		// 向客户端反馈信息
 		out.println(username + "的电话号码："+ phoneNumber);
+		
 		out.close();
 	}
 
@@ -59,6 +70,11 @@ public class SayhiForAjax extends HttpServlet {
 		doGet(request, response);
 	}
 
+	/**
+	 * 通过JDBC访问数据库
+	 * @param name	姓名
+	 * @return		电话号码
+	 */
 	private String getPhoneNumber(String name) throws SQLException
 	{
 		String phonenumber = "'未找到号码'";
