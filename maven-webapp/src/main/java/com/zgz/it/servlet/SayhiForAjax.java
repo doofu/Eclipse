@@ -1,4 +1,4 @@
-package com.zgz.it.maven_webapp;
+package com.zgz.it.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

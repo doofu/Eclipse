@@ -39,8 +39,8 @@
 		<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
 		<jdbc.url>jdbc:mysql://localhost:3306</jdbc.url>
 		<jdbc.username>root</jdbc.username>
-		<jdbc.password>123456</jdbc.password>
-		<catalina.home>D:\apache-tomcat-6.0.33-windows-x86</catalina.home>
+		<jdbc.password>root</jdbc.password>
+		<catalina.home>c:\apache-tomcat-7.0.52</catalina.home>
 	</properties>
 
 	<!-- <repositories> <repository> <id>nexus</id> <name>Nexus Repository</name> 
