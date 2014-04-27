@@ -15,13 +15,22 @@ public class UserManage {
 		// 获取一个会话session
 		Session session = MySessionFactory.getSessionFactory().openSession();
 		
-		Nametable nametable = null;
+		Nametable nametable = new Nametable();
 		try {
-			nametable = (Nametable) session.load(Nametable.class, username);
-System.out.println("找到记录！" + nametable.getPhonenumber());
+			// get不支持延迟加载，而load支持。
+			// 当查询特定的数据库中不存在的数据时，get会返回null，而load则抛出异常。
+			nametable = (Nametable)session.load(Nametable.class, username);
+
+// 解决load延迟加载问题：
+// Nametable.hbm.xml中，如果lazy的属性值为true（缺省为true），那么在使用load方法加载数据时，
+// 只有确实用到数据的时候才会发出sql语句；这样有可能减少系统的开销
+// 因此，如果没有一下语句，load语句没有执行，return时返回值为null
+// 解决方法：一、将lazy的属性值设为false
+//			<class name="com.zgz.it.domain.Nametable" table="NAMETABLE" lazy="false">
+//			二、在return之前，使用nametable数据，让sql执行
+//			System.out.println("找到记录！" + nametable.getPhonenumber());
 		} catch (Exception e) {
 			nametable = null;
-System.out.println("没有找到记录！");
 //			throw new RuntimeException(e.getMessage());
 		}
 		finally {

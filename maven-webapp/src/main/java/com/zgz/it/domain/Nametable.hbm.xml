@@ -3,7 +3,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2014-4-26 21:29:28 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.zgz.it.domain.Nametable" table="NAMETABLE">
+	<!-- 如果lazy的属性值为true，那么在使用load方法加载数据时，只有确实用到数据的时候才会发出sql语句；这样有可能减少系统的开销。  -->
+	<!-- 解决方案见：UserManage.java -->
+    <class name="com.zgz.it.domain.Nametable" table="NAMETABLE" lazy="false">
         <id name="name" type="java.lang.String">
             <column name="NAME" />
             <generator class="assigned" />
