@@ -10,7 +10,10 @@ final public class MySessionFactory {
 	private MySessionFactory() {
 	}
 	
+	// 静态块，优先于构造函数执行，且执行一次，以保证类为单态
 	static {
+		// 1、创建Configuration，configure()不带参数，默认找"hibernate.cfg.xml"文件
+		// 2、创建会话工程SessionFactory，这是一个重量级对象，因此MySessionFactory类设计为单态
 		sessionFactory = new Configuration().configure().buildSessionFactory();
 	}
 	

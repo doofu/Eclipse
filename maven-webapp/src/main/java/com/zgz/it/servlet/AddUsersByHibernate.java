@@ -2,6 +2,7 @@ package com.zgz.it.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
@@ -36,27 +37,23 @@ public class AddUsersByHibernate extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		Nametable nametable = new Nametable();
-		boolean b = false;
 		String username = null;
+		boolean b = false;
 		
-		try {
-			username = request.getParameter("username2");
-			// 解决Get方式下中文乱码问题
-			if (request.getMethod().equals("GET")) {
-				username = URLDecoder.decode(username,"UTF-8");
-			}		
-			nametable.setName(username);
+		// 取客户端上送信息
+		Nametable nametable = getUser(request);
+		
+		if (nametable != null) {
+			username = nametable.getName();
 			
-			nametable.setAge(Integer.valueOf(request.getParameter("age2")).intValue());
-			nametable.setSalary(Double.valueOf(request.getParameter("salary2")).doubleValue());
-			nametable.setPhonenumber(request.getParameter("phonenumber2"));
-			nametable.setEmail(request.getParameter("email2"));
-			nametable.setPassword(request.getParameter("password2"));
-			
-			// 访问业务逻辑层，查找电话号码 
-			b = new UserManage().addUser(nametable);
-		} catch (Exception e) {
+			try {
+				// 访问业务逻辑层，增加用户 
+				b = new UserManage().addUser(nametable);
+			} catch (Exception e) {
+				username = "数据有误，";
+				b = false;
+			}
+		} else {
 			username = "数据有误，";
 			b = false;
 		}
@@ -77,5 +74,34 @@ public class AddUsersByHibernate extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
+	/**
+	 * 取客户端上送的数据
+	 * @param request
+	 * @return Nametable
+	 */
+	private Nametable getUser(HttpServletRequest request) throws UnsupportedEncodingException {
+		Nametable nametable = new Nametable();
+		String username;
+				
+		try {
+			username = request.getParameter("username2");
+			// 解决Get方式下中文乱码问题
+			if (request.getMethod().equals("GET")) {
+				username = URLDecoder.decode(username,"UTF-8");
+			}		
+			nametable.setName(username);
+			
+			nametable.setAge(Integer.valueOf(request.getParameter("age2")).intValue());
+			nametable.setSalary(Double.valueOf(request.getParameter("salary2")).doubleValue());
+			nametable.setPhonenumber(request.getParameter("phonenumber2"));
+			nametable.setEmail(request.getParameter("email2"));
+			nametable.setPassword(request.getParameter("password2"));
+		} catch(Exception e) {
+			nametable = null;
+		}
+		
+		return nametable;
+	}
 }
+

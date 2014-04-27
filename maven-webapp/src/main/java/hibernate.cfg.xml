@@ -4,11 +4,15 @@
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+    	<!-- 配置使用的Driver -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
+        <!-- 配置dialet方言，明确告诉hibernate连接是哪种数据库 -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <!-- TRUE：显示出执行的SQL语句 -->
         <property name="show_sql">true</property>  
           
         <!--  property name="transaction.factory_class">net.sf.hibernate.transaction.JDBCTransactionFactory</property> -->   
@@ -18,6 +22,7 @@
         <!-- update: 如果数据库表不存在，则创建表-->
         <!-- property name="hbm2dll.outo">create</property> -->
         
+        <!-- 制定管理的对象映射文件 -->
         <mapping resource="com/zgz/it/domain/Nametable.hbm.xml" />    
     </session-factory>
 </hibernate-configuration>
