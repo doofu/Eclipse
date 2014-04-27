@@ -44,6 +44,25 @@
 		});
 	}  
 	
+	function getUserByPost() {
+		$.ajax({
+			type:"post",							//请求方式
+			url:"/maven-webapp/GetUserByHibernate",		//发送请求地址
+			dataType:"xml",
+			data: {									//发送给数据库的数据
+				username:$("#username2").val()
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(xml) {
+				alert(xml);
+				var age = $(xml).find("phonenumber").Text();
+				alert(age);
+				//$("#myres2").val(phonenumber);
+				//$("#phonenumber2").val(phonenumber);
+			}
+		});
+	}  
+	
 	//给url地址增加时间蒫，难过浏览器，不读取缓存  
 	function convertURL(url) {  
 	    //获取时间戳  
@@ -62,8 +81,8 @@
 <body>
 
 	<form name="Sayhi" Method="Post" action="/maven-webapp/Sayhi">
-		<H2>JQuery Hibernate范例程序</H2>
-		<H3>Servlet: Sayhi, GetPhoneNumberByHibernate, AddUsersByHibernate</H3><br>
+		<H2>JQuery Hibernate范例程序（返回数据格式为XML）</H2>
+		<H3>Servlet: GetUserByHibernate</H3><br>
 		用户姓名：<input type='text' onkeyup="checkNameByGet();" name='username' id="username" size="30"> 
 		<input type="button" onclick="checkNameByGet();" value="Get访问方式"> 
 		<font color="red" size="2"><span id="myres" ></span></font><br>
@@ -80,7 +99,7 @@
 	</form>
 	<form name="Sayhi" Method="Post" action="/maven-webapp/AddUsersByHibernate">
 		用户姓名：<input type='text' name='username2' id="username2" size="30"> 
-		<input type="button" onclick="checkNameByPost();" value="Post访问方式"> 
+		<input type="button" onclick="getUserByPost();" value="Post访问方式"> 
 		<font color="red" size="2"><span id="myres2" ></span></font><br>
 		用户年龄：<input type="text" name="age2" id="age2"><br> 
 		用户薪水：<input type="text" name="salary2" id="salary2"><br> 

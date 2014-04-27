@@ -41,7 +41,7 @@ public class AddUsersByHibernate extends HttpServlet {
 		boolean b = false;
 		
 		// 取客户端上送信息
-		Nametable nametable = getUser(request);
+		Nametable nametable = getRequestData(request);
 		
 		if (nametable != null) {
 			username = nametable.getName();
@@ -80,7 +80,7 @@ public class AddUsersByHibernate extends HttpServlet {
 	 * @param request
 	 * @return Nametable
 	 */
-	private Nametable getUser(HttpServletRequest request) throws UnsupportedEncodingException {
+	private Nametable getRequestData(HttpServletRequest request) throws UnsupportedEncodingException {
 		Nametable nametable = new Nametable();
 		String username;
 				

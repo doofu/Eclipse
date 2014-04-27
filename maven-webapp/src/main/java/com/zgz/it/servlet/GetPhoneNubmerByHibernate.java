@@ -48,7 +48,7 @@ public class GetPhoneNubmerByHibernate extends HttpServlet {
 		// 访问业务逻辑层，查找电话号码 
 		phoneNumber = new UserManage().getPhoneNumber(username);
 		
-		// 向客户端反馈信息
+		// 向客户端反馈文本格式的信息
 		out.println(username + "的电话号码（by hibernate）："+ phoneNumber);
 		
 		out.close();

@@ -11,6 +11,26 @@ import com.zgz.it.util.MySessionFactory;
  * 使用Hibernate访问数据库
  */
 public class UserManage {
+	public Nametable getUser(String username) {
+		// 获取一个会话session
+		Session session = MySessionFactory.getSessionFactory().openSession();
+		
+		Nametable nametable = null;
+		try {
+			nametable = (Nametable) session.load(Nametable.class, username);
+System.out.println("找到记录！" + nametable.getPhonenumber());
+		} catch (Exception e) {
+			nametable = null;
+System.out.println("没有找到记录！");
+//			throw new RuntimeException(e.getMessage());
+		}
+		finally {
+			session.close();
+		}
+		
+		return nametable;
+	}
+	
 	public String getPhoneNumber(String username) {
 		// 获取一个会话session
 		Session session = MySessionFactory.getSessionFactory().openSession();
