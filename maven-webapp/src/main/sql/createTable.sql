@@ -3,7 +3,7 @@ DROP TABLE nametable;
 CREATE TABLE `test`.`nametable` (
   `name` VARCHAR(30) NOT NULL,
   `age` INT NULL,
-  `salary` DECIMAL NULL,
+  `salary` DECIMAL(10,2) NULL,
   `phonenumber` VARCHAR(20) NULL,
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(10) NULL,

@@ -4,4 +4,30 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>SayhiForHibernate</servlet-name>
+  	<display-name>SayhiForHibernate</display-name>
+  	<description></description>
+  	<servlet-class>com.zgz.it.servlet.SayhiForHibernate</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddUserByHibernate</servlet-name>
+  	<display-name>AddUserByHibernate</display-name>
+  	<description></description>
+  	<servlet-class>com.zgz.it.servlet.AddUserByHibernate</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddUsersByHibernate</servlet-name>
+  	<display-name>AddUsersByHibernate</display-name>
+  	<description></description>
+  	<servlet-class>com.zgz.it.servlet.AddUsersByHibernate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SayhiForHibernate</servlet-name>
+  	<url-pattern>/SayhiForHibernate</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddUsersByHibernate</servlet-name>
+  	<url-pattern>/AddUsersByHibernate</url-pattern>
+  </servlet-mapping>
 </web-app>

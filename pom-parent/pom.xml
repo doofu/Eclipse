@@ -79,9 +79,36 @@
 		    <dependency>
 		        <groupId>org.hibernate</groupId>
 		        <artifactId>hibernate-core</artifactId>
-		        <version>4.3.4.Final</version>
+		        <version>3.6.10.Final</version>
 		    </dependency>
 		    <!-- hibernate 4.3.0 end -->
+<dependency>
+ <groupId>c3p0</groupId>
+ <artifactId>c3p0</artifactId>
+ <version>0.9.1.2</version>
+  </dependency>
+            
+   
+   <dependency>
+ <groupId>org.slf4j</groupId>
+ <artifactId>slf4j-nop</artifactId>
+ <version>1.5.2</version>
+   </dependency>
+    <dependency>
+       <groupId>org.hibernate</groupId>
+       <artifactId>hibernate-annotations</artifactId>
+       <version>3.4.0.GA</version>
+    </dependency>
+    <dependency>
+       <groupId>org.hibernate</groupId>
+       <artifactId>hibernate-commons-annotations</artifactId>
+       <version>3.3.0.ga</version>
+    </dependency>
+    <dependency>
+       <groupId>org.hibernate</groupId>
+       <artifactId>hibernate-entitymanager</artifactId>
+       <version>3.4.0.GA</version>
+    </dependency>
 		    
 		    <!-- Struts2 2.3.16.1 begin -->
 		    <dependency>

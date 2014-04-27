@@ -22,6 +22,7 @@ String str_date2 = currentTime.toString(); 				//将Date型日期时间转换成
 <a href="html/MyPage1.html">演示Javascript、Applet、Servlet等技术</a><br><br>
 <a href="html/MyFormPage.html">演示表单提交，Servlet及数据库JDBC访问</a><br><br>
 <a href="html/MyPageAjax.html">演示Ajax</a><br><br>
-<a href="html/MyPageJQuery.html">演示JQuery</a><br>
+<a href="html/MyPageJQuery.html">演示JQuery</a><br><br>
+<a href="html/MyPageJQueryHibernate.html">演示JQuery Hibernate</a><br><br>
 </body>
 </html>
