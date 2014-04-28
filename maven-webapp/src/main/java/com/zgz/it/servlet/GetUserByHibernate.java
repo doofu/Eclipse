@@ -54,6 +54,8 @@ public class GetUserByHibernate extends HttpServlet {
 		// 向客户端反馈信息
 		PrintWriter out = response.getWriter();
 		
+		out.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+		
 		// 使用dom4j向客户端反馈XML格式的信息
 		Document document = DocumentHelper.createDocument();
 		
@@ -77,7 +79,7 @@ public class GetUserByHibernate extends HttpServlet {
 			passwordElement.setText(nametable.getPassword());
 		} 
 		
-		response.setContentType("text/xml; charset=utf-8");
+		response.setContentType("text/xml;charset=utf-8");
 		response.setHeader("pragma", "no-cache");
 		response.setHeader("cache-control", "no-cache");
 		
@@ -90,7 +92,7 @@ public class GetUserByHibernate extends HttpServlet {
 		
 		out.flush();
 		
-//		out.close();
+		out.close();
 	}
 
 	/**

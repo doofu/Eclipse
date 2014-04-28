@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,15 +15,16 @@ import com.zgz.it.domain.Nametable;
 import com.zgz.it.service.UserManage;
 
 /**
- * Servlet implementation class AddUsersByHibernate
+ * Servlet implementation class ModifyUserByHibernate
  */
-public class AddUsersByHibernate extends HttpServlet {
+@WebServlet("/ModifyUserByHibernate")
+public class ModifyUserByHibernate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddUsersByHibernate() {
+    public ModifyUserByHibernate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,8 +34,6 @@ public class AddUsersByHibernate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -48,7 +48,7 @@ public class AddUsersByHibernate extends HttpServlet {
 			
 			try {
 				// 访问业务逻辑层，增加用户 
-				b = new UserManage().addUser(nametable);
+				b = new UserManage().modifyUser(nametable);
 			} catch (Exception e) {
 				username = "数据有误，";
 				b = false;
@@ -59,10 +59,13 @@ public class AddUsersByHibernate extends HttpServlet {
 		}
 		
 		// 向客户端反馈信息
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		if (b == true) 
-			out.println(username + "增加成功");
+			out.println(username + "修改成功");
 		else
-			out.println(username + "增加失败");
+			out.println(username + "修改失败");
 		
 		out.close();
 	}

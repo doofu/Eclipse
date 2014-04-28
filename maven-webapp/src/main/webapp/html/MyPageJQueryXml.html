@@ -9,40 +9,35 @@
 
 <script type="text/javascript" src="../javascript/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-	function checkNameByGet() {
+	function checkUserByGet() {
 		//Get方式下，中文会产生乱码
     	//解决中文乱码问题的方法1,页面端发出的数据作一次encodeURI，服务端使用new String(old.getBytes("iso8859-1"),"UTF-8");  
     	//解决中文乱码问题的方法2,页面端发出的数据作两次encodeURI,服务端使用String name = URLDecoder.decode(old,"UTF-8");  
-    	var url = "/maven-webapp/GetPhoneNubmerByHibernate?username=" + encodeURI(encodeURI($("#username").val()));  
-//		var url = "/maven-webapp/GetPhoneNubmerByHibernate?username=" + $("#username").val(); 
+    	var url = "/maven-webapp/GetUserByHibernate?username=" + encodeURI(encodeURI($("#username").val()));  
+//		var url = "/maven-webapp/GetUserByHibernate?username=" + $("#username").val(); 
     	url = convertURL(url); 
 
     	$.ajax({
     		type:"get",		//请求方式
     		url:url,		//发送请求地址
+			dataType:"xml",
 			data: {			//发送给数据库的数据
 			},
 			//请求成功后的回调函数有两个参数
-			success:function(data,textStatus) {
-				$("#myres").html(data);
-				//$("#phonenumber").val(data);
+			success:function(xml) {
+				var age = $(xml).find("age").text();
+				var salary = $(xml).find("salary").text();
+				var phonenumber = $(xml).find("phonenumber").text();
+				var email = $(xml).find("email").text();
+				var password = $(xml).find("password").text();
+				$("#age").val(age);
+				$("#salary").val(salary);
+				$("#phonenumber").val(phonenumber);
+				$("#email").val(email);
+				$("#password").val(password);
 			}
 		});
 	}
-
-	function checkNameByPost() {
-		$.ajax({
-			type:"post",							//请求方式
-			url:"/maven-webapp/GetPhoneNubmerByHibernate",		//发送请求地址
-			data: {									//发送给数据库的数据
-				username:$("#username2").val()
-			},
-			//请求成功后的回调函数有两个参数
-			success:function(data,textStatus) {
-				$("#myres2").html(data);
-			}
-		});
-	}  
 	
 	function getUserByPost() {
 		$.ajax({
@@ -54,11 +49,17 @@
 			},
 			//请求成功后的回调函数有两个参数
 			success:function(xml) {
-				alert(xml);
-				var age = $(xml).find("phonenumber").Text();
-				alert(age);
-				//$("#myres2").val(phonenumber);
-				//$("#phonenumber2").val(phonenumber);
+				var age = $(xml).find("age").text();
+				var salary = $(xml).find("salary").text();
+				var phonenumber = $(xml).find("phonenumber").text();
+				var email = $(xml).find("email").text();
+				var password = $(xml).find("password").text();
+				$("#age2").val(age);
+				$("#salary2").val(salary);
+				$("#phonenumber2").val(phonenumber);
+				$("#email2").val(email);
+				$("#password2").val(password);
+				$("#myres2").html("");
 			}
 		});
 	}  
@@ -74,17 +75,51 @@
 	        url = url + "?t=" + timstamp;  
 	    }  
 	    return url;  
-	}  
+	}
+	
+	function deleteUserByPost() {
+		$.ajax({
+			type:"post",							//请求方式
+			url:"/maven-webapp/DeleteUserByHibernate",		//发送请求地址
+			data: {									//发送给数据库的数据
+				username:$("#username2").val()
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus) {
+				$("#myres2").html(data);
+			}
+		});
+	}
+
+	function modifyUserByPost() {
+		$.ajax({
+			type:"post",							//请求方式
+			url:"/maven-webapp/ModifyUserByHibernate",		//发送请求地址
+			data: {									//发送给数据库的数据
+				username:$("#username2").val(),
+				age:$("#age2").val(),
+				salary:$("#salary2").val(),
+				phonenumber:$("#phonenumber2").val(),
+				email:$("#email2").val(),
+				password:$("#password2").val(),
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus) {
+				$("#myres2").html(data);
+			}
+		});
+	}	
+	
 </script>
 
 </head>
 <body>
 
-	<form name="Sayhi" Method="Post" action="/maven-webapp/Sayhi">
+	<form name="Sayhi" Method="Post" action="/maven-webapp/AddUsersByHibernate">
 		<H2>JQuery Hibernate范例程序（返回数据格式为XML）</H2>
 		<H3>Servlet: GetUserByHibernate</H3><br>
-		用户姓名：<input type='text' onkeyup="checkNameByGet();" name='username' id="username" size="30"> 
-		<input type="button" onclick="checkNameByGet();" value="Get访问方式"> 
+		用户姓名：<input type='text' onkeyup="checkUserByGet();" name='username' id="username" size="30"> 
+		<input type="button" onclick="getUserByGet();" value="Get访问方式"> 
 		<font color="red" size="2"><span id="myres" ></span></font><br>
 		<!-- div style="border-width: 0; color: red" type="text" id="myres"></div><br -->
 		<!-- input style="border-width: 0; color: red" type="text" id="myres" size=50><br -->
@@ -93,12 +128,12 @@
 		电话号码：<input type="text" name="phonenumber" id="phonenumber"><br> 
 		电子邮件：<input	type="text" name="email" id="email"><br>
 		用户密码：<input type="password" name="password" id="passowrd"><br><br>
-		<input type="submit" value="提交"> 
+		<input type="submit" value="增加"> 
 		<input type="reset" value="清除"><br>
 		<br><br>
 	</form>
 	<form name="Sayhi" Method="Post" action="/maven-webapp/AddUsersByHibernate">
-		用户姓名：<input type='text' name='username2' id="username2" size="30"> 
+		用户姓名：<input type='text' onkeyup="getUserByPost();" name='username2' id="username2" size="30"> 
 		<input type="button" onclick="getUserByPost();" value="Post访问方式"> 
 		<font color="red" size="2"><span id="myres2" ></span></font><br>
 		用户年龄：<input type="text" name="age2" id="age2"><br> 
@@ -106,8 +141,11 @@
 		电话号码：<input type="text" name="phonenumber2" id="phonenumber2"><br> 
 		电子邮件：<input	type="text" name="email2" id="email2"><br>
 		用户密码：<input type="password" name="password2" id="passowrd2"><br><br>
-		<input type="submit" value="增加"> 
+		<input type="button" onclick="deleteUserByPost();" value="删除"> 
+		<input type="button" onclick="modifyUserByPost();" value="修改">
 		<input type="reset" value="清除"><br>
+		<!--input type="submit" value="按钮"> 
+		<input type="reset" value="清除"><br>  -->
 	</form>
 	<br><br><br>
 	<a href="/maven-webapp/index.jsp">首页</a>

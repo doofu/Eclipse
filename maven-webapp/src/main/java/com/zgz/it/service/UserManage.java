@@ -1,5 +1,6 @@
 package com.zgz.it.service;
 
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -19,7 +20,8 @@ public class UserManage {
 		try {
 			// get不支持延迟加载，而load支持。
 			// 当查询特定的数据库中不存在的数据时，get会返回null，而load则抛出异常。
-			nametable = (Nametable)session.load(Nametable.class, username);
+//			nametable = (Nametable)session.load(Nametable.class, username);
+			nametable = (Nametable)session.get(Nametable.class, username);
 
 // 解决load延迟加载问题：
 // Nametable.hbm.xml中，如果lazy的属性值为true（缺省为true），那么在使用load方法加载数据时，
@@ -32,7 +34,8 @@ public class UserManage {
 		} catch (Exception e) {
 			nametable = null;
 //			throw new RuntimeException(e.getMessage());
-		}
+		} 
+		
 		finally {
 			session.close();
 		}
@@ -70,6 +73,68 @@ public class UserManage {
 		try {
 			// 3、将用户信息增加到数据库表中
 			session.save(nametable);
+			
+			// 4、提交事务
+			ts.commit();
+		} catch (Exception e) {
+			success = false;
+//			throw new RuntimeException(e.getMessage());
+		}
+		finally {
+			// 5、关闭会话
+			session.close();
+		}
+
+		return success;
+	}
+	
+	public boolean deleteUser(String username) {
+		
+		boolean success = true;
+		
+		// 1、获取一个会话session
+		Session session = MySessionFactory.getSessionFactory().openSession();
+		
+		// 2、开始事务处理，对于增删改操作，必须开启事物
+		Transaction ts = session.beginTransaction();
+		try {
+			// 3、将用户信息从数据库表中删除
+			Nametable nametable = (Nametable)session.get(Nametable.class, username);
+			session.delete(nametable);
+			
+			// 4、提交事务
+			ts.commit();
+		} catch (Exception e) {
+			success = false;
+//			throw new RuntimeException(e.getMessage());
+		}
+		finally {
+			// 5、关闭会话
+			session.close();
+		}
+
+		return success;
+	}
+	
+	public boolean modifyUser(Nametable nametable) {
+		
+		boolean success = true;
+		
+		// 1、获取一个会话session
+		Session session = MySessionFactory.getSessionFactory().openSession();
+		
+		// 2、开始事务处理，对于增删改操作，必须开启事物
+		Transaction ts = session.beginTransaction();
+		try {
+			// 3、将用户信息修改到数据库表中
+			Nametable tNametable = (Nametable)session.get(Nametable.class, nametable.getName());
+			tNametable.setAge(nametable.getAge());
+			tNametable.setSalary(nametable.getSalary());
+			tNametable.setPhonenumber(nametable.getPhonenumber());
+			tNametable.setEmail(nametable.getEmail());
+			tNametable.setPassword(nametable.getPassword());
+			session.update(tNametable);
+			session.flush();
 			
 			// 4、提交事务
 			ts.commit();
