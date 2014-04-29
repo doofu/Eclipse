@@ -79,6 +79,7 @@ public class UserManage {
 			ts.commit();
 		} catch (Exception e) {
 			success = false;
+			ts.rollback();
 //			throw new RuntimeException(e.getMessage());
 		}
 		finally {
@@ -107,6 +108,7 @@ public class UserManage {
 			ts.commit();
 		} catch (Exception e) {
 			success = false;
+			ts.rollback();
 //			throw new RuntimeException(e.getMessage());
 		}
 		finally {
@@ -141,6 +143,7 @@ public class UserManage {
 			ts.commit();
 		} catch (Exception e) {
 			success = false;
+			ts.rollback();
 //			throw new RuntimeException(e.getMessage());
 		}
 		finally {
