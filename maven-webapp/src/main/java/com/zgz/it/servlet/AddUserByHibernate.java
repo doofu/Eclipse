@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,14 +16,17 @@ import com.zgz.it.service.UserManage;
 
 /**
  * Servlet implementation class AddUsersByHibernate
+ * 
+ * 有意没有使用标注：@WebServlet("/AddUserByHibernate")
+ * 在web.xml中需要有相应的配置（可以查看web.xml文件内容）
  */
-public class AddUsersByHibernate extends HttpServlet {
+public class AddUserByHibernate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddUsersByHibernate() {
+    public AddUserByHibernate() {
         super();
         // TODO Auto-generated constructor stub
     }

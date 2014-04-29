@@ -18,42 +18,49 @@
     	url = convertURL(url); 
 
     	$.ajax({
-    		type:"get",		//请求方式
-    		url:url,		//发送请求地址
-			dataType:"xml",
-			data: {			//发送给数据库的数据
+    		type:"get",			//请求方式
+    		url:url,			//发送请求地址
+			dataType:"xml",		// 返回数据为xml格式
+			data: {				//发送给数据库的数据
 			},
-			//请求成功后的回调函数有两个参数
+			//请求成功后的回调函数
 			success:function(xml) {
+				// 取XML数据中的数据项
 				var age = $(xml).find("age").text();
 				var salary = $(xml).find("salary").text();
 				var phonenumber = $(xml).find("phonenumber").text();
 				var email = $(xml).find("email").text();
 				var password = $(xml).find("password").text();
+				
+				// 回填html中form相应的字段
 				$("#age").val(age);
 				$("#salary").val(salary);
 				$("#phonenumber").val(phonenumber);
 				$("#email").val(email);
 				$("#password").val(password);
+				$("#myres").html("");
 			}
 		});
 	}
 	
 	function getUserByPost() {
 		$.ajax({
-			type:"post",							//请求方式
-			url:"/maven-webapp/GetUserByHibernate",		//发送请求地址
-			dataType:"xml",
-			data: {									//发送给数据库的数据
+			type:"post",								// 请求方式
+			url:"/maven-webapp/GetUserByHibernate",		// 发送请求地址
+			dataType:"xml",								// 返回数据为xml格式
+			data: {										// 发送给数据库的数据
 				username:$("#username2").val()
 			},
-			//请求成功后的回调函数有两个参数
+			//请求成功后的回调函数
 			success:function(xml) {
+				// 取XML数据中的数据项
 				var age = $(xml).find("age").text();
 				var salary = $(xml).find("salary").text();
 				var phonenumber = $(xml).find("phonenumber").text();
 				var email = $(xml).find("email").text();
 				var password = $(xml).find("password").text();
+				
+				// 回填html中form相应的字段
 				$("#age2").val(age);
 				$("#salary2").val(salary);
 				$("#phonenumber2").val(phonenumber);
@@ -77,11 +84,30 @@
 	    return url;  
 	}
 	
+	function addUserByPost() {
+		$.ajax({
+			type:"post",								//请求方式
+			url:"/maven-webapp/AddUserByHibernate",		//发送请求地址
+			data: {										//发送给数据库的数据
+				username:$("#username").val(),
+				age:$("#age").val(),
+				salary:$("#salary").val(),
+				phonenumber:$("#phonenumber").val(),
+				email:$("#email").val(),
+				password:$("#password").val(),
+			},
+			//请求成功后的回调函数有两个参数
+			success:function(data,textStatus) {
+				$("#myres").html(data);
+			}
+		});
+	}	
+	
 	function deleteUserByPost() {
 		$.ajax({
-			type:"post",							//请求方式
+			type:"post",									//请求方式
 			url:"/maven-webapp/DeleteUserByHibernate",		//发送请求地址
-			data: {									//发送给数据库的数据
+			data: {											//发送给数据库的数据
 				username:$("#username2").val()
 			},
 			//请求成功后的回调函数有两个参数
@@ -93,9 +119,9 @@
 
 	function modifyUserByPost() {
 		$.ajax({
-			type:"post",							//请求方式
+			type:"post",									//请求方式
 			url:"/maven-webapp/ModifyUserByHibernate",		//发送请求地址
-			data: {									//发送给数据库的数据
+			data: {											//发送给数据库的数据
 				username:$("#username2").val(),
 				age:$("#age2").val(),
 				salary:$("#salary2").val(),
@@ -115,9 +141,10 @@
 </head>
 <body>
 
-	<form name="Sayhi" Method="Post" action="/maven-webapp/AddUsersByHibernate">
+	<form name="Sayhi" Method="Post" action="/maven-webapp/AddUserByHibernate">
 		<H2>JQuery Hibernate范例程序（返回数据格式为XML）</H2>
-		<H3>Servlet: GetUserByHibernate</H3><br>
+		<H3>Servlet: AddUserByHibernate、DeleteUserByHibernate、ModifyUserByHibernate</H3>
+		<H3>业务逻辑：UserManage</H3><br>
 		用户姓名：<input type='text' onkeyup="checkUserByGet();" name='username' id="username" size="30"> 
 		<input type="button" onclick="getUserByGet();" value="Get访问方式"> 
 		<font color="red" size="2"><span id="myres" ></span></font><br>
@@ -127,8 +154,9 @@
 		用户薪水：<input type="text" name="salary" id="salary"><br> 
 		电话号码：<input type="text" name="phonenumber" id="phonenumber"><br> 
 		电子邮件：<input	type="text" name="email" id="email"><br>
-		用户密码：<input type="password" name="password" id="passowrd"><br><br>
-		<input type="submit" value="增加"> 
+		用户密码：<input type="password" name="password" id="password"><br><br>
+		<input type="button" onclick="addUserByPost();" value="增加"> 
+		<!-- input type="submit" value="增加"> -->
 		<input type="reset" value="清除"><br>
 		<br><br>
 	</form>
@@ -140,14 +168,26 @@
 		用户薪水：<input type="text" name="salary2" id="salary2"><br> 
 		电话号码：<input type="text" name="phonenumber2" id="phonenumber2"><br> 
 		电子邮件：<input	type="text" name="email2" id="email2"><br>
-		用户密码：<input type="password" name="password2" id="passowrd2"><br><br>
+		用户密码：<input type="password" name="password2" id="password2"><br><br>
 		<input type="button" onclick="deleteUserByPost();" value="删除"> 
 		<input type="button" onclick="modifyUserByPost();" value="修改">
 		<input type="reset" value="清除"><br>
 		<!--input type="submit" value="按钮"> 
 		<input type="reset" value="清除"><br>  -->
 	</form>
-	<br><br><br>
+	<br><br>
+	<b>设计过程：</b><br>
+	1、设计数据库和Nametable.java<br>
+	2、配置Nametable.hbm.xml（ORM），用Eclipse可自动生成<br>
+	3、配置hibernate.cfg.xml，用Eclipse可自动生成<br><br>
+	<b>编码过程：</b><br>
+	1、创建会话工厂<br>
+	2、获取会话session<br>
+	3、对于增删改操作，开始事务处理<br>
+	4、增、删、改、查操作<br>
+	5、对于增删改操作，提交事务<br>
+	6、关闭会话session<br>
+	<br><br>
 	<a href="/maven-webapp/index.jsp">首页</a>
 </body>
 </html>

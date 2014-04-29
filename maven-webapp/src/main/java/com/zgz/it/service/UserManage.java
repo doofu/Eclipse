@@ -1,6 +1,5 @@
 package com.zgz.it.service;
 
-import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -49,6 +48,8 @@ public class UserManage {
 		
 		String phoneNumber = "";
 		try {
+			// get不支持延迟加载，而load支持。
+			// 当查询特定的数据库中不存在的数据时，get会返回null，而load则抛出异常。
 			Nametable nametable = (Nametable) session.load(Nametable.class, username);
 			phoneNumber = nametable.getPhonenumber();
 		} catch (Exception e) {
@@ -68,7 +69,7 @@ public class UserManage {
 		// 1、获取一个会话session
 		Session session = MySessionFactory.getSessionFactory().openSession();
 		
-		// 2、开始事务处理，对于增删改操作，必须开启事物
+		// 2、开始事务处理，对于增删改操作，必须开启事务
 		Transaction ts = session.beginTransaction();
 		try {
 			// 3、将用户信息增加到数据库表中
@@ -95,7 +96,7 @@ public class UserManage {
 		// 1、获取一个会话session
 		Session session = MySessionFactory.getSessionFactory().openSession();
 		
-		// 2、开始事务处理，对于增删改操作，必须开启事物
+		// 2、开始事务处理，对于增删改操作，必须开启事务
 		Transaction ts = session.beginTransaction();
 		try {
 			// 3、将用户信息从数据库表中删除
@@ -123,7 +124,7 @@ public class UserManage {
 		// 1、获取一个会话session
 		Session session = MySessionFactory.getSessionFactory().openSession();
 		
-		// 2、开始事务处理，对于增删改操作，必须开启事物
+		// 2、开始事务处理，对于增删改操作，必须开启事务
 		Transaction ts = session.beginTransaction();
 		try {
 			// 3、将用户信息修改到数据库表中

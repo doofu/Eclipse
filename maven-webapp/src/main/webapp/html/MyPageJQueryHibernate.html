@@ -62,8 +62,8 @@
 <body>
 
 	<form name="Sayhi" Method="Post" action="/maven-webapp/Sayhi">
-		<H2>JQuery Hibernate范例程序</H2>
-		<H3>Servlet: Sayhi, GetPhoneNumberByHibernate, AddUsersByHibernate</H3><br>
+		<H2>JQuery Hibernate范例程序（返回格式为文本）</H2>
+		<H3>Servlet: Sayhi, GetPhoneNumberByHibernate, AddUserByHibernate</H3><br>
 		用户姓名：<input type='text' onkeyup="checkNameByGet();" name='username' id="username" size="30"> 
 		<input type="button" onclick="checkNameByGet();" value="Get访问方式"> 
 		<font color="red" size="2"><span id="myres" ></span></font><br>
@@ -74,11 +74,11 @@
 		电话号码：<input type="text" name="phonenumber" id="phonenumber"><br> 
 		电子邮件：<input	type="text" name="email" id="email"><br>
 		用户密码：<input type="password" name="password" id="passowrd"><br><br>
-		<input type="submit" value="提交"> 
+		<input type="submit" value="查询"> 
 		<input type="reset" value="清除"><br>
 		<br><br>
 	</form>
-	<form name="Sayhi" Method="Post" action="/maven-webapp/AddUsersByHibernate">
+	<form name="Sayhi" Method="Post" action="/maven-webapp/AddUserByHibernate">
 		用户姓名：<input type='text' name='username2' id="username2" size="30"> 
 		<input type="button" onclick="checkNameByPost();" value="Post访问方式"> 
 		<font color="red" size="2"><span id="myres2" ></span></font><br>
@@ -90,7 +90,19 @@
 		<input type="submit" value="增加"> 
 		<input type="reset" value="清除"><br>
 	</form>
-	<br><br><br>
+	<br><br>
+	<b>设计过程：</b><br>
+	1、设计数据库和Nametable.java<br>
+	2、配置Nametable.hbm.xml（ORM），用Eclipse可自动生成<br>
+	3、配置hibernate.cfg.xml，用Eclipse可自动生成<br><br>
+	<b>编码过程：</b><br>
+	1、创建会话工厂<br>
+	2、获取会话session<br>
+	3、对于增删改操作，开始事务处理<br>
+	4、增、删、改、查操作<br>
+	5、对于增删改操作，提交事务<br>
+	6、关闭会话session<br>
+	<br><br>
 	<a href="/maven-webapp/index.jsp">首页</a>
 </body>
 </html>
