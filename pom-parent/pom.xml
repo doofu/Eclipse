@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.zgz.it</groupId>
-  <artifactId>pom-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+	<groupId>com.zgz.it</groupId>
+	<artifactId>pom-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-  <name>pom-parent</name>
-  <url>http://maven.apache.org</url>
+	<name>pom-parent</name>
+	<url>http://maven.apache.org</url>
 
 	<!-- 导入了三个模块，把这三个模块聚合在一起了 -->
 	<modules>
-		<!--
-		聚合是模块的位置
-		<module>../user-core</module>
-		<module>../user-log</module>
-		<module>../user-service</module>
-		-->
+		<!-- 聚合是模块的位置 <module>../user-core</module> <module>../user-log</module> 
+			<module>../user-service</module> -->
 	</modules>
 
 	<distributionManagement>
@@ -50,285 +46,167 @@
 
 	<dependencyManagement>
 		<dependencies>
-		  	<!-- JUnit 4.11 begin -->
-		    <dependency>
-		      <groupId>junit</groupId>
-		      <artifactId>junit</artifactId>
-		      <version>4.11</version>
-		      <scope>test</scope>
-		    </dependency>
-		    <!-- JUnit 4.11 end -->
-		    
-		    <!-- Servlet-api 3.1.0 begin -->
+			<!-- JUnit 4.11 begin -->
 			<dependency>
-			    <groupId>javax.servlet</groupId>
-			    <artifactId>javax.servlet-api</artifactId>
-			    <version>3.1.0</version>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- JUnit 4.11 end -->
+
+			<!-- Servlet-api 3.1.0 begin -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
 			</dependency>
 			<!-- Servlet-api 3.1.0 end -->
-			
+
 			<!-- MySql 5.1.28 start -->
-		    <dependency>
+			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>5.1.28</version>
 			</dependency>
 			<!-- MySql 5.1.28 end -->
-		
-		    <!-- hibernate 4.3.4 begin -->
-		    <dependency>
-		        <groupId>org.hibernate</groupId>
-		        <artifactId>hibernate-core</artifactId>
-		        <version>3.6.10.Final</version>
-		    </dependency>
-		    <!-- hibernate 4.3.0 end -->
-<dependency>
- <groupId>c3p0</groupId>
- <artifactId>c3p0</artifactId>
- <version>0.9.1.2</version>
-  </dependency>
-            
-   
-   <dependency>
- <groupId>org.slf4j</groupId>
- <artifactId>slf4j-nop</artifactId>
- <version>1.5.2</version>
-   </dependency>
-    <dependency>
-       <groupId>org.hibernate</groupId>
-       <artifactId>hibernate-annotations</artifactId>
-       <version>3.4.0.GA</version>
-    </dependency>
-    <dependency>
-       <groupId>org.hibernate</groupId>
-       <artifactId>hibernate-commons-annotations</artifactId>
-       <version>3.3.0.ga</version>
-    </dependency>
-    <dependency>
-       <groupId>org.hibernate</groupId>
-       <artifactId>hibernate-entitymanager</artifactId>
-       <version>3.4.0.GA</version>
-    </dependency>
-		    
-		    <!-- Struts2 2.3.16.1 begin -->
-		    <dependency>
-			    <groupId>org.apache.struts</groupId>
-			    <artifactId>struts2-core</artifactId>
-			    <version>2.3.16.1</version>
-		    </dependency>
-		    <!-- Struts2 2.3.16.1 end -->
-		    
-		    <!-- struts2-convention-plugin 2.3.16.1 begin -->
-		    <!-- 支持struts2的注解功能 -->
-		    <dependency>
-			    <groupId>org.apache.struts</groupId>
-			    <artifactId>struts2-convention-plugin</artifactId>
-			    <version>2.3.16.1</version>
-			</dependency>
-		    <!-- struts2-convention-plugin end -->
-		    
-		    <!-- Spring 4.0.3.RELEASE begin -->
-		    <dependency>
-			    <groupId>org.springframework</groupId>
-			    <artifactId>spring-core</artifactId>
-			    <version>4.0.3.RELEASE</version>
-			</dependency>
-			<!-- Spring 4.0.3.RELEASE end -->	
-			
-			<!--
+
+			<!-- hibernate 4.3.4 begin -->
 			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>user-core</artifactId>
-				<version>${project.version}</version>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>4.3.5.Final</version>
+			</dependency>
+			<!-- hibernate 4.3.0 end -->
+
+			<!-- Hibernate的相关的依赖包 begin -->
+			<dependency>
+			    <groupId>org.hibernate</groupId>
+			    <artifactId>hibernate-c3p0</artifactId>
+			    <version>4.3.5.Final</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>user-service</artifactId>
-				<version>${project.version}</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-nop</artifactId>
+				<version>1.7.7</version>
 			</dependency>
+			<!-- 从hibernate3.5以后，hibernate-annotations包就已经包含在hibernate-core里面了因此，就不需要这个包了 -->
+			<!-- dependency> 
+				<groupId>org.hibernate</groupId> 
+				<artifactId>hibernate-annotations</artifactId> 
+				<version>3.5.6-Final</version> 
+			</dependency -->
 			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>user-log</artifactId>
-				<version>${project.version}</version>
-				<exclusions>
-					- 可以排除依赖 -
-					<exclusion>
-						<groupId>commons-logging</groupId>
-						<artifactId>commons-logging</artifactId>
-					</exclusion>
-				</exclusions>
+				<groupId>org.hibernate.common</groupId>
+				<artifactId>hibernate-commons-annotations</artifactId>
+				<version>4.0.4.Final</version>
 			</dependency>
-			-->
+			<!-- dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-commons-annotations</artifactId> 
+				<version>4.0.4.Final</version> </dependency -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>4.3.5.Final</version>
+			</dependency>
+			<!-- Hibernate的相关的依赖包 end -->
+
+			<!-- Struts2 2.3.16.1 begin -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-core</artifactId>
+				<version>2.3.16.1</version>
+			</dependency>
+			<!-- Struts2 2.3.16.1 end -->
+
+			<!-- struts2-convention-plugin 2.3.16.1 begin -->
+			<!-- 支持struts2的注解功能 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-convention-plugin</artifactId>
+				<version>2.3.16.1</version>
+			</dependency>
+			<!-- struts2-convention-plugin end -->
+
+			<!-- Spring 4.0.3.RELEASE begin -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>4.0.3.RELEASE</version>
+			</dependency>
+			<!-- Spring 4.0.3.RELEASE end -->
+
+			<!-- <dependency> <groupId>${project.groupId}</groupId> <artifactId>user-core</artifactId> 
+				<version>${project.version}</version> </dependency> <dependency> <groupId>${project.groupId}</groupId> 
+				<artifactId>user-service</artifactId> <version>${project.version}</version> 
+				</dependency> <dependency> <groupId>${project.groupId}</groupId> <artifactId>user-log</artifactId> 
+				<version>${project.version}</version> <exclusions> - 可以排除依赖 - <exclusion> 
+				<groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
+				</exclusion> </exclusions> </dependency> -->
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
 			<plugins>
-            	<plugin>  
-            		<!-- Maven compiler插件3.1，JRE System Libarary 1.7 -->
-	                <groupId>org.apache.maven.plugins</groupId>  
-	                <artifactId>maven-compiler-plugin</artifactId>  
-	                <version>3.1</version>  
-	                <configuration>  
-	                    <source>1.7</source>  
-	                    <target>1.7</target>
-	                    <encoding>UTF-8</encoding>  
-	                    <verbal>true</verbal>  
-	                </configuration>  
-	            </plugin>   
-	            
 				<plugin>
-					<!-- Maven site插件 -->
-		            <artifactId>maven-project-info-reports-plugin</artifactId>
-		            <version>2.7</version>
-		        </plugin>
-				<plugin>
-					<!-- Maven clean插件 -->
-		            <artifactId>maven-clean-plugin</artifactId>
-		            <version>2.5</version>
-		        </plugin>
-		        
-				<!--
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>sql-maven-plugin</artifactId>
-										<versionRange>[1.5,)</versionRange>
-										<goals>
-											<goal>execute</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>sql-maven-plugin</artifactId>
-					<version>1.5</version>
-					- 使用插件依然可以指定相应的依赖 -
-					<dependencies>
-						<dependency>
-							<groupId>mysql</groupId>
-							<artifactId>mysql-connector-java</artifactId>
-							<version>5.1.24</version>
-						</dependency>
-					</dependencies>
-					<configuration>
-						<driver>${jdbc.driver}</driver>
-						<url>${jdbc.url}</url>
-						<username>${jdbc.username}</username>
-						<password>${jdbc.password}</password>
-					</configuration>
-					<executions>
-						<execution>
-							<id>create-db</id>
-							<phase>compile</phase>
-							<goals>
-								<goal>execute</goal>
-							</goals>
-							<configuration>
-								<sqlCommand>create database IF NOT EXISTS itat_maven_test</sqlCommand>
-							</configuration>
-						</execution>
-						<execution>
-							<id>init-table</id>
-							<phase>test-compile</phase>
-							<goals>
-								<goal>execute</goal>
-							</goals>
-							<configuration>
-								<srcFiles>
-									<srcFile>src/main/resources/init.sql</srcFile>
-								</srcFiles>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-rar-plugin</artifactId>
-					<version>2.3</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>rar</goal>
-							</goals>
-							<phase>package</phase>
-						</execution>
-					</executions>
-					<configuration>
-						<includeJar>true</includeJar>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>cobertura-maven-plugin</artifactId>
-					<configuration>
-						<formats>
-							<format>html</format>
-							<format>xml</format>
-						</formats>
-					</configuration>
-					<executions>
-						<execution>
-							<id>cobertura-report</id>
-							<goals>
-								<goal>cobertura</goal>
-							</goals>
-							<phase>test</phase>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>2.2.1</version>
-					<executions>
-						<execution>
-							<phase>compile</phase>
-							<goals>
-								<goal>jar</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
+					<!-- Maven compiler插件3.1，JRE System Libarary 1.7 -->
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.0</version>
+					<version>3.1</version>
 					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-						- 此处设置了skip等于设置了把所有的测试编译都跳过，如果测试类写得有问题，也不会报错，所以一般不使用 -
-						- <skip>true</skip> -
+						<source>1.7</source>
+						<target>1.7</target>
+						<encoding>UTF-8</encoding>
+						<verbal>true</verbal>
 					</configuration>
 				</plugin>
-								<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.14</version>
-					<configuration>
-						- 设置包含的测试类 -
-						- <includes> <include>**/Hello*</include> </includes> -
-						- 设置不进行测试的类 <excludes> <exclude>Test*</exclude> </excludes> -
-						- 跳过测试阶段，一般不推荐跳过 -
-						- <skip>true</skip> -
-					</configuration>
+
+				<plugin>
+					<!-- Maven site插件 -->
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>2.7</version>
 				</plugin>
-				-->
+				<plugin>
+					<!-- Maven clean插件 -->
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+
+				<!-- <plugin> <groupId>org.eclipse.m2e</groupId> <artifactId>lifecycle-mapping</artifactId> 
+					<version>1.0.0</version> <configuration> <lifecycleMappingMetadata> <pluginExecutions> 
+					<pluginExecution> <pluginExecutionFilter> <groupId>org.codehaus.mojo</groupId> 
+					<artifactId>sql-maven-plugin</artifactId> <versionRange>[1.5,)</versionRange> 
+					<goals> <goal>execute</goal> </goals> </pluginExecutionFilter> <action> <ignore 
+					/> </action> </pluginExecution> </pluginExecutions> </lifecycleMappingMetadata> 
+					</configuration> </plugin> <plugin> <groupId>org.codehaus.mojo</groupId> 
+					<artifactId>sql-maven-plugin</artifactId> <version>1.5</version> - 使用插件依然可以指定相应的依赖 
+					- <dependencies> <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+					<version>5.1.24</version> </dependency> </dependencies> <configuration> <driver>${jdbc.driver}</driver> 
+					<url>${jdbc.url}</url> <username>${jdbc.username}</username> <password>${jdbc.password}</password> 
+					</configuration> <executions> <execution> <id>create-db</id> <phase>compile</phase> 
+					<goals> <goal>execute</goal> </goals> <configuration> <sqlCommand>create 
+					database IF NOT EXISTS itat_maven_test</sqlCommand> </configuration> </execution> 
+					<execution> <id>init-table</id> <phase>test-compile</phase> <goals> <goal>execute</goal> 
+					</goals> <configuration> <srcFiles> <srcFile>src/main/resources/init.sql</srcFile> 
+					</srcFiles> </configuration> </execution> </executions> </plugin> <plugin> 
+					<groupId>org.apache.maven.plugins</groupId> <artifactId>maven-rar-plugin</artifactId> 
+					<version>2.3</version> <executions> <execution> <goals> <goal>rar</goal> 
+					</goals> <phase>package</phase> </execution> </executions> <configuration> 
+					<includeJar>true</includeJar> </configuration> </plugin> <plugin> <groupId>org.codehaus.mojo</groupId> 
+					<artifactId>cobertura-maven-plugin</artifactId> <configuration> <formats> 
+					<format>html</format> <format>xml</format> </formats> </configuration> <executions> 
+					<execution> <id>cobertura-report</id> <goals> <goal>cobertura</goal> </goals> 
+					<phase>test</phase> </execution> </executions> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+					<artifactId>maven-source-plugin</artifactId> <version>2.2.1</version> <executions> 
+					<execution> <phase>compile</phase> <goals> <goal>jar</goal> </goals> </execution> 
+					</executions> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+					<artifactId>maven-compiler-plugin</artifactId> <version>3.0</version> <configuration> 
+					<source>1.6</source> <target>1.6</target> - 此处设置了skip等于设置了把所有的测试编译都跳过，如果测试类写得有问题，也不会报错，所以一般不使用 
+					- - <skip>true</skip> - </configuration> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+					<artifactId>maven-surefire-plugin</artifactId> <version>2.14</version> <configuration> 
+					- 设置包含的测试类 - - <includes> <include>**/Hello*</include> </includes> - - 设置不进行测试的类 
+					<excludes> <exclude>Test*</exclude> </excludes> - - 跳过测试阶段，一般不推荐跳过 - - <skip>true</skip> 
+					- </configuration> </plugin> -->
 			</plugins>
 		</pluginManagement>
 	</build>
