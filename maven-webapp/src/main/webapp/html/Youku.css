@@ -1,38 +1,32 @@
 /*@CHARSET "UTF-8";*/
+
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* 最外层区域 
+----------------------------------------------------------*/
 .divOut {
-	width: 1015px; /*+40*/
+	width: 1015px;
 	height: 410px;
 	/*border: 1px solid red;*/
 	margin-left: auto;
 	margin-right: auto;
 }
 
+/* 左边区域 
+-----------------------------------------------------------*/
 .divLeft {
-	width: 660px;/*+40*/
+	width: 660px;
 	height: 390px;
 	float: left;
 	/*border: 1px solid green;*/
 	margin: 10px 0px 10px 10px;
 }
 
-.divRight {
-	width: 330px;
-	height: 390px;
-	float: left;
-	/*border: 1px solid blue;*/
-	margin: 10px 10px 10px 0px;
-}
-
-ul {
-	margin: 0px;
-	padding: 0px;
-	list-style-type:none
-}
-
-a {
-	border: none;
-}
-
+/* 图像属性设置 */
 .imgLBig {
 	width: 420px;
 	height: 240px;
@@ -47,6 +41,60 @@ a {
 	margin: 10px;
 	float: left;
 	border: none;
+}
+
+/* 用伪类hover实现鼠标移动到图片上时，换图片功能 */
+.divLeft li {
+	display: inline;
+	float: left;
+	position: relative;
+}
+
+.divLeft li a .onhover {
+	display: none;
+}
+
+.divLeft li a:hover .onhover
+{
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 200px;
+	height: 110px;
+	margin: 10px;
+	z-index: 1;
+}
+
+/* 实现第一个图片上的链接 */
+.divLMessage {
+	background-color: deepskyblue;
+	margin: 4px 10px 10px 4px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	z-index: 1;
+	float: right;
+}
+
+.divLMessage a {
+	text-decoration: none; 
+	color: white;
+	font-size: large;
+}
+
+.divLMessage a:hover {
+	background-color: red;
+}
+
+/* 右边区域 
+----------------------------------------------------------*/
+.divRight {
+	width: 330px;
+	height: 390px;
+	float: left;
+	/*border: 1px solid blue;*/
+	margin: 10px 10px 10px 0px;
 }
 
 .imgRTop {
@@ -76,7 +124,12 @@ a {
 	margin-left: 0px;
 }
 
-.messageR {
+.divRMessage .messageR {
 	float: right;
 	color: white;
+}
+
+.divRMessage :hover .messageR {
+	color: black;
+	font-weight: bolder;
 }
