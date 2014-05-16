@@ -1,4 +1,4 @@
-/*@CHARSET "UTF-8";*/
+@CHARSET "UTF-8";
 
 * {
 	border: 0;
@@ -6,7 +6,7 @@
 	padding: 0;
 }
 
-/* ×îÍâ²ãÇøÓò 
+/* æœ€å¤–å±‚åŒºåŸŸ 
 ----------------------------------------------------------*/
 .divOut {
 	width: 1015px;
@@ -16,7 +16,7 @@
 	margin-right: auto;
 }
 
-/* ×ó±ßÇøÓò 
+/* å·¦è¾¹åŒºåŸŸ 
 -----------------------------------------------------------*/
 .divLeft {
 	width: 660px;
@@ -26,7 +26,7 @@
 	margin: 10px 0px 10px 10px;
 }
 
-/* Í¼ÏñÊôĞÔÉèÖÃ */
+/* å›¾åƒå±æ€§è®¾ç½® */
 .imgLBig {
 	width: 420px;
 	height: 240px;
@@ -43,7 +43,7 @@
 	border: none;
 }
 
-/* ÓÃÎ±ÀàhoverÊµÏÖÊó±êÒÆ¶¯µ½Í¼Æ¬ÉÏÊ±£¬»»Í¼Æ¬¹¦ÄÜ */
+/* ç”¨ä¼ªç±»hoverå®ç°é¼ æ ‡ç§»åŠ¨åˆ°å›¾ç‰‡ä¸Šæ—¶ï¼Œæ¢å›¾ç‰‡åŠŸèƒ½ */
 .divLeft li {
 	display: inline;
 	float: left;
@@ -66,9 +66,8 @@
 	z-index: 1;
 }
 
-/* ÊµÏÖµÚÒ»¸öÍ¼Æ¬ÉÏµÄÁ´½Ó */
+/* å®ç°ç¬¬ä¸€ä¸ªå›¾ç‰‡ä¸Šçš„é“¾æ¥ */
 .divLMessage {
-	background-color: deepskyblue;
 	margin: 4px 10px 10px 4px;
 	position: absolute;
 	bottom: 0px;
@@ -79,6 +78,7 @@
 
 .divLMessage a {
 	text-decoration: none; 
+	background-color: dodgerblue; /*deepskyblue;*/
 	color: white;
 	font-size: large;
 }
@@ -87,7 +87,7 @@
 	background-color: red;
 }
 
-/* ÓÒ±ßÇøÓò 
+/* å³è¾¹åŒºåŸŸ 
 ----------------------------------------------------------*/
 .divRight {
 	width: 330px;
@@ -120,7 +120,7 @@
 	padding-top: 5px;
 }
 
-.messageL {
+.divRMessage .messageL {
 	margin-left: 0px;
 }
 
