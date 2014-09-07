@@ -88,7 +88,7 @@ public class SayhiForAjax extends HttpServlet {
             connection = DriverManager.getConnection(url, "root", "root");
  
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("select phonenumber from nametable where name ='" + name + "'");
+            ResultSet results = statement.executeQuery("select phonenumber from Nametable where name ='" + name + "'");
             results.next();
             phonenumber = results.getString("phonenumber");
         }
